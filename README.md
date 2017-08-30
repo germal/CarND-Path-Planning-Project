@@ -91,7 +91,7 @@ The final stage of the update cycle involves the management of a smooth trajecto
 <b>Step 6:</b> Add the present state `{ pos_x,pos_y,pos_s,angle,dist_inc }` to the queue for use in the next update cycle.
 
 ![Steering](./images/Steering-v2.png "Steering")
-In the diagram above, if no change is made to the heading, the present momentum of the reference vehicle (one step short of maximum velocity) would move along the horizontal path from left to right (a distance of `v`) ending at the origin. A change in velocity is limited to any point within the radius `a` around the origin. (For illustrative purposes, `a` is not to scale.) Steering causes a change in heading, thus arriving at a different location indicated by travel along the deflected path (example points 1 and 2) or straight-line acceleration (point 3). The simulator measures both `accT` (the `x` component) and `accN` (the `y` component) which form the acceleration vector shown in red. The present method of managing steering, velocity, and acceleration led to empirically selected values so as to prevent `A` from exceeding `0.00394`.
+In the diagram above, if no change is made to the heading, the present momentum of the reference vehicle (one step short of maximum velocity) would move along the horizontal path from left to right (a distance of `v`) ending at the origin. A change in velocity is limited to any point within the radius `a` around the origin. (For illustrative purposes, `a` is not to scale.) Steering causes a change in heading, thus arriving at a different location indicated by travel along the deflected path (example points 1 and 2) or straight-line acceleration (point 3). The simulator measures both `accT` (the `x` component) and `accN` (the `y` component) which form the acceleration vector shown in red. The present method of managing steering, velocity, and acceleration led to empirically selected values so as to prevent `a` from exceeding `0.00394`.
 
 ---
 ### Methodology
@@ -140,8 +140,8 @@ Summary of observations made during 3,267 miles of testing the controller model 
 - Maximum jerk is ±4 m/s<sup>3</sup>
 - Handles end-of-track wrap-around (splines, sensor data errors)
 - Handles latency up to 150 milliseconds (with a queue length of 50).
-- A version of this model achieved 199.77 seconds on the Bosch Challenge track.
-- Requires additional rules to handle the rare events (200 miles) such as adjacent vehicles that swerve into the current lane or potential navigation through chaotic accidents.
+- A version of this model achieves 199.71 seconds on the Bosch Challenge track.
+- Requires additional rules to handle the rare events (~200+ miles) such as adjacent vehicles that swerve into the current lane or potential navigation through chaotic accidents.
 - Occasionally, the reference vehicle slows at the beginning of the track due to a faulty sensor.
 - Obstacle vehicle clocked at 56.50mph 
 
@@ -178,6 +178,7 @@ Summary of observations made during 3,267 miles of testing the controller model 
 
 ### Simulator suggestions
 - Send incident report message to controller (presently: need to step through a video recording to visually locate incident)
+- Option to stop simulator at incident, similar to Bosch Challenge version.
 - Custom obstacle vehicle configurations to run specific test scenarios. (presently: must wait and hope that a situation randomly repeats)
 - Reduce the font size of all text and move the red reports to the side
 - Camera rotation easing
